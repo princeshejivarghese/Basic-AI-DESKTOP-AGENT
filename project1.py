@@ -1,5 +1,5 @@
-import webbrowser # Tools for the web
-import datetime    # Tools for time
+import webbrowser 
+import datetime    
 
 def start_agent():
     # --- PHASE 1: WAKE UP (Outside the loop) ---
@@ -8,7 +8,6 @@ def start_agent():
 
     # --- PHASE 2: RUNNING (The Loop) ---
     while True:
-        # Capture User Input
         command = input("\nEnter Command: ").lower()
 
         if "time" in command:
@@ -27,9 +26,15 @@ def start_agent():
             webbrowser.open(url)
             print(f"Opening YouTube for: {search}")
 
+        elif "note" in command:
+            memo = input("What should I remember? ")
+            with open("memory.txt", "a") as file:
+                file.write(f"[{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {memo}\n")
+            print("Successfully saved to my memory.txt file!")
+
         elif "exit" in command:
             print("Shutting down... Goodbye!")
-            break  # This stops the loop immediately
+            break  
 
         else:
             print("I don't know that command yet. Teach me more later!")
